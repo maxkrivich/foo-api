@@ -5,12 +5,15 @@ import (
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
+	ginprometheus "github.com/zsais/go-gin-prometheus"
 )
 
 const PORT = "8080"
 
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
+	p := ginprometheus.NewPrometheus("gin")
+	p.Use(router)
 
 	router.GET("/health", HealthCheck)
 
