@@ -33,7 +33,7 @@ jobs:
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITOPS_TOKEN }}
         repository: maxkrivich/do-argocd-apps
         event-type: argocd-image-update
         client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "image_name": "${{ secrets.DOCKER_USERNAME }}/foo-api:${{ github.sha }}", "kustomize_image": "foo-api", "app_name": "foo"}'
